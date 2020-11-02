@@ -6,7 +6,7 @@ git config --global user.name 'Travis'
 git config --global user.email 'travis@travis-ci.com'
 
 # setup ssh-agent and provide the GitHub deploy key
-openssl aes-256-cbc -K $encrypted_e8b9f665f844_key -iv $encrypted_e8b9f665f844_iv -in config/travis/deploy.enc -out ssh -d
+openssl aes-256-cbc -K $encrypted_e8b9f665f844_key -iv $encrypted_e8b9f665f844_iv -in config/travis/deploy.enc -out deploy -d
 
 # 对解密后的私钥添加权限
 chmod 600 deploy
