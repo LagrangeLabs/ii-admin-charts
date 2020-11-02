@@ -1,12 +1,10 @@
-# ii-admin-charts 中后台图表组件库
-
 <h1 align="center">ii-admin-charts</h1>
 
 <div align="center">
   实在智能中后台图表组件库
 </div>
 
-## Getting Started
+## 项目开始
 
 Install dependencies,
 
@@ -34,4 +32,4 @@ $ npm run build
 
 ## 🔗 Links
 
-- [Home_page](https://lagrangelabs.github.io/ii-admin-charts/#/)
+- [首页](https://lagrangelabs.github.io/ii-admin-charts/#/)
