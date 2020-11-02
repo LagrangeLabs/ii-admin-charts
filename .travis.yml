@@ -31,5 +31,5 @@ deploy:
     api_key:
       secure: GoqFVc9/HiAJgLxUVTVm3fAEBBoJKopKlCvrHPYArW9AKoLbkGEnCLjz5OOLr29jeHGKL8T3DzBLSYnKrL6uKMNaEk0tTcTnzzNS4KVhGXXf41IU8jDd6VS/jwPMZKeWElXzwxoSBhTS7hEakWSyfqhgrf5sbCHyEL95nLo80kvmB+etySsZw577quqIP6tijb5cpcAJiJrhh7aO74K+gcUbJAcgYSyE8Roa24vrT9VZa3MFhxLdeDiPE48C4tbGgu6AEMNHdVQdKv1HA91CIN+k7fNrSRIWt91aXRaMxp0AOf5cYOkBqKYv60QHuC0HSWkm5Xt3BY5Ha5b7Oxn2+Ol5eN57aTF+lNW1Cwt8H5YFeiVs4kXXubolJREnWxzUMqxspZGTiO+jzLgNOj+OOH6wZ+Tr03DIy96ITq/0AiCh3Uhb4hAHZj/dpneGH6q9fdjBfZbLtYB/ahEW/n2aTwvmgLR2POYcPtOTimfyNPPL1zMQ7kXaKTku9Qb95Igkgjpf3X3y6LY9niUPngDk2PsXepnrzAPl9gr0Tdk0Qt3/hkKIDq+84SqZbk1PALbcP5GiSxkWj4LFeYfBVBo31AkYREXFJTe/3xJZNMMV+UXoYCXMJoUnoGIi0vjSGw8UZP8dmTV8Yhx6oH+A5HxpTc2gCHbZtuA6/UUPO/moieY=
     on:
-      branch: true
-      epo: LagrangeLabs/ii-admin-charts
+      branch: master
+      repo: LagrangeLabs/ii-admin-charts
