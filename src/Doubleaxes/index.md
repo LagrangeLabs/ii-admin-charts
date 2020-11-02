@@ -4,7 +4,7 @@ nav:
   path: /components
 ---
 
-## Doubleaxes 双轴图表
+## Doubleaxes
 
 示例:
 

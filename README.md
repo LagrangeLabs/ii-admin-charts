@@ -1,4 +1,10 @@
-# ii-admin-charts
+# ii-admin-charts 中后台图表组件库
+
+<h1 align="center">ii-admin-charts</h1>
+
+<div align="center">
+  实在智能中后台图表组件库
+</div>
 
 ## Getting Started
 
@@ -25,3 +31,7 @@ Build library via `father-build`,
 ```bash
 $ npm run build
 ```
+
+## 🔗 Links
+
+- [Home_page](https://lagrangelabs.github.io/ii-admin-charts/#/)
