@@ -1,5 +1,5 @@
 {
-  "private": true,
+  "private": false,
   "name": "ii-admin-charts",
   "version": "0.1.0",
   "scripts": {
