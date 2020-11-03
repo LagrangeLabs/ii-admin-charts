@@ -2,12 +2,6 @@
 # Exit with nonzero exit code if anything fails
 set -e
 
-# 生成 gh-pages 所需的静态文件
-npm run docs:build
-
-# 生成 npm 发布所需的 dist 文件
-npm run build
-
 git config --global user.name 'Travis'
 git config --global user.email 'travis@travis-ci.com'
 
