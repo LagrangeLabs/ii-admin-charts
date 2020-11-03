@@ -1,7 +1,10 @@
 {
   "private": false,
   "name": "ii-admin-charts",
-  "version": "0.1.3",
+  "version": "0.1.4",
+  "author": "ShiMu",
+  "license": "MIT",
+  "keywords": ["bizcharts","g2"],
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -16,6 +19,9 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
