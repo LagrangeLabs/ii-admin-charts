@@ -1,12 +1,15 @@
 ---
+title: Doubleaxes 双轴线图
+order: 2
 nav:
-  title: Components
+  title: 组件 
   path: /components
+toc: menu
 ---
 
-## Doubleaxes
+# Doubleaxes 双轴线
 
-示例:
+## 代码演示
 
 ```tsx
 import React from 'react';
