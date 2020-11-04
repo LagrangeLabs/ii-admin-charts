@@ -8,7 +8,7 @@ import {
   Axis,
   Coordinate,
 } from 'bizcharts';
-import { DataView } from '@antv/data-set';
+import DataSet from '@antv/data-set';
 import { IChartProps, IBaseGemoProps } from 'bizcharts/lib/interface';
 
 export interface IDoublePieChartProps {
@@ -39,7 +39,7 @@ const IDoublePieChart = (props: IDoublePieChartProps) => {
     secondIntervalCfg = {},
   } = props;
 
-  const parentDv = new DataView(); // 创建并返回数据视图实例
+  const parentDv = new DataSet.DataView(); // 创建并返回数据视图实例
 
   // dv.source: 载入数据;
   // dv.transform: 执行数据处理
@@ -51,7 +51,7 @@ const IDoublePieChart = (props: IDoublePieChartProps) => {
     as: 'percent', // as: 结果存储在 percent 字段
   });
 
-  const subDv = new DataView();
+  const subDv = new DataSet.DataView();
   subDv.source(data).transform({
     type: 'percent',
     field: dataField,
