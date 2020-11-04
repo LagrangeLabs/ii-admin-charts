@@ -1,8 +1,8 @@
 ---
 title: Doubleaxes 双轴线图
-order: 2
+order: 10
 nav:
-  title: 组件 
+  title: 组件
   path: /components
 toc: menu
 ---
@@ -79,13 +79,15 @@ const scale = {
   },
 };
 
-export default () => <Doubleaxes
-          left_y_axis_field="waiting"
-          left_y_axis_title="进入次数"
-          right_y_axis_field="people"
-          right_y_axis_title="平均时长"
-          x_axis_field="time"
-          data={data}
-          scale={scale}
-        />;
+export default () => (
+  <Doubleaxes
+    left_y_axis_field="waiting"
+    left_y_axis_title="进入次数"
+    right_y_axis_field="people"
+    right_y_axis_title="平均时长"
+    x_axis_field="time"
+    data={data}
+    scale={scale}
+  />
+);
 ```

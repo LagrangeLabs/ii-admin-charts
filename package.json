@@ -1,10 +1,13 @@
 {
   "private": false,
   "name": "ii-admin-charts",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": "ShiMu",
   "license": "MIT",
-  "keywords": ["bizcharts","g2"],
+  "keywords": [
+    "bizcharts",
+    "g2"
+  ],
   "scripts": {
     "start": "dumi dev",
     "docs:build": "dumi build",
@@ -35,6 +38,7 @@
     ]
   },
   "dependencies": {
+    "@antv/data-set": "^0.11.7"
   },
   "devDependencies": {
     "@umijs/test": "^3.0.5",
