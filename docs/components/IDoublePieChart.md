@@ -33,10 +33,10 @@ export default () => (
     chartCfg={{ height: 400 }}
     dataField="value"
     firstLayerField="type"
+    secondLayerField="name"
     firstIntervalCfg={{
       color: ['type', ['#5AD8A6', '#FF766D']],
     }}
-    secondLayerField="name"
     secondIntervalCfg={{
       color: ['name', ['#5AD8A6', '#FF766D', '#FF9442', '#FFB882', '#CED3D8']],
     }}
