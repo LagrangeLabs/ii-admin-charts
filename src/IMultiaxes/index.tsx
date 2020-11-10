@@ -1,108 +1,134 @@
 /**
- * 双轴线
+ * 多轴折线图
  */
 import React from 'react';
+import _ from 'lodash';
 import { Chart, Axis, Tooltip, Legend, Line } from 'bizcharts';
-import { IEvent, AxisCfg, ScaleOption } from 'bizcharts/lib/interface';
+import { ILineProps } from 'bizcharts/lib/g-components/Line';
+import {
+  IEvent,
+  AxisCfg,
+  IChartProps,
+  IBaseGemoProps,
+  ScaleOption,
+} from 'bizcharts/lib/interface';
+import { LegendItem } from '@antv/g2/lib/interface';
 
-export interface IDoubleaxesProps {
-  /** 高度 */
-  height: number;
-  /** 数据 */
-  data: Array<any>;
-  /** 左Y坐标轴的字段 */
-  left_y_axis_field: string;
-  /** 左Y坐标轴的标题 */
-  left_y_axis_title: string;
-  /** 左Y坐标轴配置属性 */
-  left_y_axis_config: AxisCfg;
-  /** 右Y坐标轴的字段 */
-  right_y_axis_field: string;
-  /** 右Y坐标轴的标题 */
-  right_y_axis_title: string;
-  /** 右Y左标轴配置属性 */
-  right_y_axis_config: AxisCfg;
-  /** X坐标轴的字段 */
-  x_axis_field: string;
-  /** X坐标轴的标题 */
-  x_axis_title: string;
-  /** X坐标轴配置属性 */
-  x_axis_config: AxisCfg;
-  /** 列定义配置，用于配置数值的类型等，以 data 中的数据属性为key。 */
-  scale?: {
-    [field: string]: ScaleOption;
-  };
-  /** 折线颜色 */
-  colors: Array<string>;
+export interface IYAxisCfgItemProps {
+  /** Y坐标轴线条颜色 */
+  color: string;
+  /** Y坐标轴字段 */
+  yAxisField: string;
+  /** Y坐标轴标题 */
+  yAxisTitle: string;
+  /** Y坐标轴配置属性 */
+  yAxisConfig?: {};
+  /** 线条配置  */
+  lineConfig: IBaseGemoProps;
 }
 
-const Doubleaxes = (props: IDoubleaxesProps) => {
+export interface IMultiaxesProps {
+  /** 数据 */
+  data: Array<any>;
+  /** Chart组件(最外层画布)配置 */
+  chartCfg?: IChartProps;
+  /** X坐标轴字段 */
+  xAxisField: string;
+  /** X坐标轴标题 */
+  xAxisTitle?: string;
+  /** X坐标轴配置属性 */
+  xAxisConfig?: AxisCfg;
+  /** Y坐标轴配置列表 */
+  yAxisCfgList: Array<IYAxisCfgItemProps>;
+}
+
+const IMultiaxes = (props: IMultiaxesProps) => {
   const {
-    height = 400,
-    colors = ['#249efa', '#ff6600'],
     data = [],
-    left_y_axis_field,
-    left_y_axis_title = '',
-    left_y_axis_config = {},
-    right_y_axis_field,
-    right_y_axis_title = '',
-    right_y_axis_config = {},
-    x_axis_field,
-    x_axis_title = '',
-    x_axis_config = {},
-    scale,
+    chartCfg = {},
+    xAxisField,
+    xAxisTitle = '',
+    xAxisConfig = {},
+    yAxisCfgList = [],
   } = props;
+  const { scale = {}, ...restCfg } = chartCfg;
 
+  let newScale: { [field: string]: ScaleOption } = {};
   let chartIns: import('@antv/g2/lib/chart/chart').default | null = null;
+  const legendItems: Array<LegendItem> = [];
 
-  const newScale = scale || {
-    // tickCount控制双轴的对齐
-    people: {
-      alias: left_y_axis_title,
-    },
-    waiting: {
-      alias: right_y_axis_title,
-    },
-    time: {
-      alias: x_axis_title,
-    },
+  newScale[`${xAxisField}`] = {
+    alias: xAxisTitle,
   };
+
+  yAxisCfgList.map(item => {
+    if (item.yAxisField) {
+      newScale[`${item.yAxisField}`] = {
+        alias: item.yAxisTitle,
+      };
+    }
+
+    legendItems.push({
+      value: item.yAxisField,
+      name: item.yAxisTitle,
+      marker: {
+        symbol: 'hyphen',
+        style: { stroke: item.color, r: 5, lineWidth: 3 },
+      },
+    });
+  });
 
   return (
     <Chart
       forceFit
-      scale={newScale}
-      height={height}
+      height={400}
       data={data}
       onGetG2Instance={(chart: import('@antv/g2/lib/chart/chart').default) => {
         chartIns = chart;
       }}
+      scale={_.merge(scale, newScale)}
+      {...restCfg}
     >
-      <Axis name={left_y_axis_field} title {...left_y_axis_config} />
-      <Axis name={right_y_axis_field} title {...right_y_axis_config} />
-      <Axis name={x_axis_field} title {...x_axis_config} />
+      <Tooltip shared showCrosshairs />
+
+      {yAxisCfgList.map((item, index: number) => {
+        return (
+          <Line
+            key={`line_${index}`}
+            position={`${xAxisField}*${item.yAxisField}`}
+            color={item.color}
+            tooltip={[
+              `${xAxisField}*${item.yAxisField}`,
+              (xValue, yValue) => {
+                return {
+                  name: item.yAxisTitle,
+                  value: yValue,
+                  title: xValue,
+                };
+              },
+            ]}
+            {...(item.lineConfig as Omit<ILineProps, 'position'>)}
+          />
+        );
+      })}
+
+      <Axis name={xAxisField} title {...xAxisConfig} />
+
+      {yAxisCfgList.map((item, index: number) => {
+        return (
+          <Axis
+            title
+            key={`axis_${index}`}
+            name={item.yAxisField}
+            {...item.yAxisConfig}
+          />
+        );
+      })}
 
       <Legend
         custom={true}
         allowAllCanceled={true}
-        items={[
-          {
-            value: left_y_axis_field,
-            name: left_y_axis_title,
-            marker: {
-              symbol: 'hyphen',
-              style: { stroke: colors[0], r: 5, lineWidth: 3 },
-            },
-          },
-          {
-            value: right_y_axis_field,
-            name: right_y_axis_title,
-            marker: {
-              symbol: 'hyphen',
-              style: { stroke: colors[1], r: 5, lineWidth: 3 },
-            },
-          },
-        ]}
+        items={legendItems}
         onChange={(ev: IEvent | undefined) => {
           if (!ev || !chartIns) return;
 
@@ -124,40 +150,8 @@ const Doubleaxes = (props: IDoubleaxesProps) => {
           }
         }}
       />
-
-      <Tooltip shared showCrosshairs />
-
-      <Line
-        position={`${x_axis_field}*${left_y_axis_field}`}
-        color={colors[0]}
-        tooltip={[
-          `${x_axis_field}*${left_y_axis_field}`,
-          (x_value, left_y_value) => {
-            return {
-              name: left_y_axis_title,
-              value: left_y_value,
-              title: x_value,
-            };
-          },
-        ]}
-      />
-
-      <Line
-        position={`${x_axis_field}*${right_y_axis_field}`}
-        color={colors[1]}
-        tooltip={[
-          `${x_axis_field}*${right_y_axis_field}`,
-          (x_value, right_y_value) => {
-            return {
-              name: right_y_axis_title,
-              value: right_y_value,
-              title: x_value,
-            };
-          },
-        ]}
-      />
     </Chart>
   );
 };
 
-export default Doubleaxes;
+export default IMultiaxes;
