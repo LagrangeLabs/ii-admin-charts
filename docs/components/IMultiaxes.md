@@ -1,5 +1,5 @@
 ---
-title: Doubleaxes 双轴线图
+title: IMultiaxes 多轴线图
 order: 10
 nav:
   title: 组件
@@ -7,13 +7,13 @@ nav:
 toc: menu
 ---
 
-# Doubleaxes 双轴线
+# IMultiaxes 多轴线
 
 ## 代码演示
 
 ```tsx
 import React from 'react';
-import { Doubleaxes } from 'ii-admin-charts';
+import { IMultiaxes } from 'ii-admin-charts';
 
 const data = [
   {
@@ -80,7 +80,7 @@ const scale = {
 };
 
 export default () => (
-  <Doubleaxes
+  <IMultiaxes
     left_y_axis_field="waiting"
     left_y_axis_title="进入次数"
     right_y_axis_field="people"
