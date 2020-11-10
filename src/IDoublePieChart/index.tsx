@@ -22,9 +22,9 @@ export interface IDoublePieChartProps {
   firstLayerField: string;
   /** 第二层扇形颜色对应的数据字段名 */
   secondLayerField: string;
-  /** 第一层区间配置 */
+  /** 第一层 Interval 区间配置 */
   firstIntervalCfg?: IBaseGemoProps;
-  /** 第二层区间配置 */
+  /** 第二层 Interval 区间配置 */
   secondIntervalCfg?: IBaseGemoProps;
 }
 
