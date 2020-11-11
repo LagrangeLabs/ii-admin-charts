@@ -2,14 +2,14 @@ import React from 'react';
 import { DonutChart } from 'bizcharts';
 import { DonutConfig } from '@antv/g2plot/lib/plots/donut';
 
-interface IIDonuChart extends DonutConfig {
+export interface IDonutChartProps extends DonutConfig {
   /** 扇形切片大小（弧度）所对应的数据字段名 */
   angleField: string;
   /** 扇形颜色映射对应的数据字段名 */
   colorField?: string;
 }
 
-const IDonutChart = (props: IIDonuChart) => {
+const IDonutChart = (props: IDonutChartProps) => {
   const { data = [], angleField, colorField = '', ...extraProps } = props;
 
   return (
