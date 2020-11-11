@@ -20,8 +20,8 @@ import React from 'react';
 import { IDoublePieChart } from 'ii-admin-charts';
 
 const data = [
-  { value: 648, type: '通知成功', name: '成功原因' },
-  { value: 251, type: '通知失败', name: '失败原因一' },
+  { value: 648, type: '通知成功', name: '成功原因1' },
+  { value: 251, type: '通知成功', name: '成功原因2' },
   { value: 610, type: '通知失败', name: '失败原因二' },
   { value: 434, type: '通知失败', name: '失败原因三' },
   { value: 335, type: '通知失败', name: '失败原因四' },
@@ -38,11 +38,15 @@ export default () => (
       color: ['type', ['#5AD8A6', '#FF766D']],
     }}
     secondIntervalCfg={{
-      color: ['name', ['#5AD8A6', '#FF766D', '#FF9442', '#FFB882', '#CED3D8']],
+      color: ['name', ['#EFB716', '#E85858', '#FF9442', '#FFB882', '#CED3D8']],
     }}
   />
 );
 ```
+
+**注：**
+
+双层饼图的数据源需按照第一层扇形分类进行排序。
 
 ## API
 
