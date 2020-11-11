@@ -24,8 +24,10 @@ const IDonutChart = (props: IIDonuChart) => {
       label={{
         visible: true,
         type: 'outer',
-        formatter: (angleField, colorField) => {
-          return `${colorField._origin.type}: ${colorField.percent * 100} %`;
+        formatter: (text, item) => {
+          return `${item._origin[`${colorField}`]}: ${(
+            item.percent * 100
+          ).toFixed(2)} %`;
         },
       }}
       {...extraProps}
