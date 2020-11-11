@@ -39,20 +39,20 @@ const IDoublePieChart = (props: IDoublePieChartProps) => {
     secondIntervalCfg = {},
   } = props;
 
-  const parentDv = new DataSet.DataView(); // 创建并返回数据视图实例
+  const firstDv = new DataSet.DataView(); // 创建并返回数据视图实例
 
   // dv.source: 载入数据;
   // dv.transform: 执行数据处理
   // dv.rows: 存储处理后的数据
-  parentDv.source(data).transform({
+  firstDv.source(data).transform({
     type: 'percent', //'percent': 统计某个维度下某个字段的值和占总和的比例
     field: dataField, // field: 统计发生的字段
     dimension: firstLayerField, //dimension: 统计的维度字段
     as: 'percent', // as: 结果存储在 percent 字段
   });
 
-  const subDv = new DataSet.DataView();
-  subDv.source(data).transform({
+  const secondDv = new DataSet.DataView();
+  secondDv.source(data).transform({
     type: 'percent',
     field: dataField,
     dimension: secondLayerField,
@@ -63,7 +63,7 @@ const IDoublePieChart = (props: IDoublePieChartProps) => {
     <Chart
       autoFit
       height={400}
-      data={parentDv.rows}
+      data={firstDv.rows}
       scale={{
         percent: {
           formatter: (value: number) => {
@@ -95,7 +95,7 @@ const IDoublePieChart = (props: IDoublePieChartProps) => {
         {...firstIntervalCfg}
       />
 
-      <View data={subDv.rows}>
+      <View data={secondDv.rows}>
         <Coordinate type="theta" radius={0.75} innerRadius={0.5 / 0.75} />
         <Interval
           element-highlight
